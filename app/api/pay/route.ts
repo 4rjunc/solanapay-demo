@@ -87,8 +87,8 @@ async function verifyTransaction(reference: PublicKey) {
   if (!paymentData) {
     throw new Error("Payment request not found");
   }
-  const { recipient, amount, memo } = paymentData;
-
+  const { recipient, solAmount, memo } = paymentData;
+  const amount = solAmount;
   const connection = new Connection(
     "https://api.devnet.solana.com",
     "confirmed",
