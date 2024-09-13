@@ -14,25 +14,25 @@ const exchangeRate = new BigNumber(0.00012);
 
 const paymentHistory = new Map<
   string,
-  { recipient: PublicKey; amount: BigNumber; memo: string }
+  { recipient: PublicKey; solAmount: BigNumber; memo: string }
 >();
 
 export async function POST(request: Request) {
   try {
     const { inrAmount } = await request.json();
-    const amount = exchangeRate.multipliedBy(inrAmount);
+    const solAmount = exchangeRate.multipliedBy(inrAmount);
     const reference = new Keypair().publicKey;
-    const message = `Solpay - Total Checkout Amount: ${amount}`;
+    const message = `Solpay - Total Checkout Amount: ${solAmount}`;
     const urlData = await generateUrl(
       recipient,
-      amount,
+      solAmount,
       reference,
       label,
       message,
       memo,
     );
     const ref = reference.toBase58();
-    paymentHistory.set(ref, { recipient, amount, memo });
+    paymentHistory.set(ref, { recipient, solAmount, memo });
     const { url } = urlData;
     return Response.json({ url, ref });
   } catch (error) {
@@ -88,6 +88,7 @@ async function verifyTransaction(reference: PublicKey) {
     throw new Error("Payment request not found");
   }
   const { recipient, amount, memo } = paymentData;
+
   const connection = new Connection(
     "https://api.devnet.solana.com",
     "confirmed",
