@@ -1,4 +1,7 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# BANANA PAY
+
+![BANANA]("https://media1.tenor.com/m/1GzX2BuT-6EAAAAC/banana-minions.gif")
+This is a simple web to demostrate the solana pay. Using this website you can buy minions fav. food BANANA!!
 
 ## Getting Started
 
