@@ -9,7 +9,7 @@ if (!walletAddress) {
 
 const recipient = new PublicKey(walletAddress);
 const label = "food items";
-const memo = "pay INR in SOL";
+const memo = "enjoy your banana";
 const exchangeRate = new BigNumber(0.00012);
 
 const paymentHistory = new Map<
@@ -111,7 +111,7 @@ async function verifyTransaction(reference: PublicKey) {
   );
 
   if (response) {
-    paymentRequests.delete(reference.toBase58());
+    paymentHistory.delete(reference.toBase58());
   }
   return response;
 }
