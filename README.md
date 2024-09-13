@@ -1,6 +1,6 @@
 # BANANA PAY
 
-![BANANA]("https://media1.tenor.com/m/1GzX2BuT-6EAAAAC/banana-minions.gif")
+ <img src="./banana-minions.gif" alt="BANANA" width="250">
 This is a simple web to demostrate the solana pay. Using this website you can buy minions fav. food BANANA!!
 
 ## Getting Started
