@@ -14,25 +14,25 @@ const exchangeRate = new BigNumber(0.00012);
 
 const paymentHistory = new Map<
   string,
-  { recipient: PublicKey; solAmount: BigNumber; memo: string }
+  { recipient: PublicKey; amount: BigNumber; memo: string }
 >();
 
 export async function POST(request: Request) {
   try {
     const { inrAmount } = await request.json();
-    const solAmount = exchangeRate.multipliedBy(inrAmount);
+    const amount = exchangeRate.multipliedBy(inrAmount);
     const reference = new Keypair().publicKey;
-    const message = `Solpay - Total Checkout Amount: ${solAmount}`;
+    const message = `Solpay - Total Checkout Amount: ${amount}`;
     const urlData = await generateUrl(
       recipient,
-      solAmount,
+      amount,
       reference,
       label,
       message,
       memo,
     );
     const ref = reference.toBase58();
-    paymentHistory.set(ref, { recipient, solAmount, memo });
+    paymentHistory.set(ref, { recipient, amount, memo });
     const { url } = urlData;
     return Response.json({ url, ref });
   } catch (error) {
